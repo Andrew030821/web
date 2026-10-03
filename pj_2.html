@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Table</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        #title {
+            color: #333333;
+            font-size: 32px;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 95%;
+            max-width: 1100px;
+            margin: 0 auto;
+            border: 2px solid #555555;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #aaaaaa;
+            height: 55px;
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #4f81bd;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .time {
+            width: 10%;
+            background-color: #eeeeee;
+            font-weight: bold;
+        }
+
+        .day {
+            width: 18%;
+        }
+
+        .math {
+            background-color: #fff2cc;
+        }
+
+        .chapel {
+            background-color: #d9ead3;
+        }
+
+        .culture {
+            background-color: #fce5cd;
+        }
+
+        .physics {
+            background-color: #d9eaf7;
+        }
+
+        .web {
+            background-color: #eadcf8;
+        }
+
+        .ai {
+            background-color: #f4cccc;
+        }
+
+        td:hover {
+            font-weight: bold;
+        }
+
+        .info {
+            margin: 20px 0 30px;
+            color: #666666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="title">2026-2 Time Table</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="time">교시</th>
+                <th class="day">월</th>
+                <th class="day">화</th>
+                <th class="day">수</th>
+                <th class="day">목</th>
+                <th class="day">금</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <!-- 1교시 -->
+            <tr>
+                <td class="time">1교시</td>
+                <td></td>
+                <td class="math" rowspan="3">알기쉬운 미적분학</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 2교시 -->
+            <tr>
+                <td class="time">2교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 3교시 -->
+            <tr>
+                <td class="time">3교시</td>
+                <td class="chapel">채플</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 4교시 -->
+            <tr>
+                <td class="time">4교시</td>
+                <td class="culture" rowspan="3">
+                    글로벌 문화콘텐츠<br>
+                    창업 성공전략
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 5교시 -->
+            <tr>
+                <td class="time">5교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 6교시 -->
+            <tr>
+                <td class="time">6교시</td>
+                <td class="web" rowspan="3">웹프로그래밍</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 7교시 -->
+            <tr>
+                <td class="time">7교시</td>
+                <td class="physics" rowspan="3">생활속 물리</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 8교시 -->
+            <tr>
+                <td class="time">8교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 9교시 -->
+            <tr>
+                <td class="time">9교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 10교시 -->
+            <tr>
+                <td class="time">10교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 11교시 -->
+            <tr>
+                <td class="time">11교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 12교시 -->
+            <tr>
+                <td class="time">12교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="ai" rowspan="3">인공지능기초</td>
+                <td></td>
+            </tr>
+
+            <!-- 13교시 -->
+            <tr>
+                <td class="time">13교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <!-- 14교시 -->
+            <tr>
+                <td class="time">14교시</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <p class="info">2026학년도 2학기 시간표</p>
+
+</body>
+</html>
