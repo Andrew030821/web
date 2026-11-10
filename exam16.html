@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {text-align: center;}
+    .disp {width: 205px; height: 40px; margin-top: 3px; text-align: right; font-family: "Oxanium", sans-serif;}
+    input[type=button] {width: 50px; height: 50px; margin-top: 5px; text-align: center; vertical-align: middle;}
+    #cal {width: 220px; margin-left: auto; margin-right: auto;}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        let finished = false;
+    // 곱셈과 나눗셈을 먼저 계산합니다. eval은 사용하지 않습니다.
+    function calculate(text) {
+        let index = 0;
+        function number() {
+            let sign = 1;
+            if (text[index] === "-") {
+                sign = -1;
+                index++;
+            }
+            let match = text.slice(index).match(/^(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?/i);
+            if (!match) throw new Error("계산식을 완성하세요.");
+            index += match[0].length;
+            return sign * Number(match[0]);
+        }
+        function term() {
+            let value = number();
+            while (text[index] === "*" || text[index] === "/") {
+                let operator = text[index++];
+                let right = number();
+                if (operator === "/" && right === 0) {
+                    throw new Error("0으로 나눌 수 없습니다.");
+                }
+                value = operator === "*" ? value * right : value / right;
+            }
+            return value;
+        }
+        let result = term();
+        while (index < text.length) {
+            let operator = text[index++];
+            if (operator !== "+" && operator !== "-") {
+                throw new Error("잘못된 계산식입니다.");
+            }
+            let right = term();
+            result = operator === "+" ? result + right : result - right;
+        }
+        if (!Number.isFinite(result)) throw new Error("계산 범위를 초과했습니다.");
+        return Number(result.toPrecision(12));
+    }
+
+
+        $(".num").click(function(){
+            let cur = finished ? "" : $("#disp2").val();
+            let n = $(this).val();
+            finished = false;
+            $("#disp1").val("");
+            $("#disp2").val(cur+n);
+        });
+        $(".op").click(function(){
+            let cur = $("#disp2").val();
+            let n = $(this).val();
+            if(n!="=") {
+                if(cur === "") {
+                    if(n === "-") $("#disp2").val(n);
+                    return;
+                }
+                if(cur === "-") return;
+                if(/[+\-*/]$/.test(cur)) cur = cur.slice(0, -1);
+                $("#disp2").val(cur+n);
+                $("#disp1").val("");
+                finished = false;
+            }
+            else {
+                if(cur === "" || finished) return;
+                try {
+                    let result = calculate(cur);
+                    $("#disp1").val(cur + " =");
+                    $("#disp2").val(result);
+                    finished = true;
+                } catch(error) {
+                    $("#disp1").val(error.message);
+                }
+            }
+        });
+        $(".func").click(function(){
+            if($(this).val() === "ac") {
+                $("#disp1, #disp2").val("");
+                finished = false;
+            }
+        });
+    });
+</script>
+<body>
+    <h1>Calculater</h1>
+    <div id="cal">
+        <div>
+            <input type="text" class="disp" id="disp1" readonly>
+            <input type="text" class="disp" id="disp2" readonly>
+        </div>
+        <input type="button" class="num" value="7">
+        <input type="button" class="num" value="8">
+        <input type="button" class="num" value="9">
+        <input type="button" class="op" value="+"><br>
+        <input type="button" class="num" value="4">
+        <input type="button" class="num" value="5">
+        <input type="button" class="num" value="6">
+        <input type="button" class="op" value="-"><br>
+        <input type="button" class="num" value="1">
+        <input type="button" class="num" value="2">
+        <input type="button" class="num" value="3">
+        <input type="button" class="op" value="*"><br>
+        <input type="button" class="func" value="ac">
+        <input type="button" class="num" value="0">
+        <input type="button" class="op" value="=">
+        <input type="button" class="op" value="/"><br>
+    </div>
+</body>
+</html>
