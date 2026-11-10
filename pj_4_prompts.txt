@@ -1,19 +1,19 @@
-[MP4] 2. LLM    
-: 2026-11-10
- : Codex (LLM   )
- : https://andrew030821.github.io/web/pj_4.html
+[MP4] 2. LLM을 활용하여 자신만의 계산기 만들기
+작업일: 2026-11-10
+사용 도구: Codex (LLM 기반 코딩 도구)
+완성된 계산기: https://andrew030821.github.io/web/pj_4.html
 
-1.    ()
-2  github pj_4.html       e-class URL      
+1. 최초 입력 프롬프트 (원문)
+2번항목 내 github에 pj_4.html 로 만들어서 커밋 및 푸시하고 삼육대학교 e-class에 URL복사 붙여넣기해서 제출해 계산기는 공학용 계산기로 만들어
 
-  : e-Class        .   HTML form , eval  ,  URL          .
+함께 제공한 자료: e-Class 과제 안내 화면 및 기존 제출란 화면 캡처. 과제 안내에는 HTML form 계산기, eval 사용 금지, 완성 URL 및 작업 완료까지의 입력 프롬프트 정리 제출 조건이 포함되어 있었다.
 
-2.      ()
-     
+2. 작업 중 추가 입력 프롬프트 (원문)
+그냥 코드스페이스에서 커밋 및 푸시하면되는데 뭐하는거야
 
-3.    
--     HTML  pj_4.html , ,   .
-- form submit  ,       . eval       .
-- , , , ,  , , , , pi/e, Ans, DEG/RAD ,   .
--   36    23 .   , ,  ,  ,  ,   .
--   GitHub  Codespaces .   Codespaces   .
+3. 수행 과정 및 결과
+- 단일 HTML 파일 pj_4.html에 화면, 스타일, 계산 기능을 작성했다.
+- form과 submit 이벤트를 사용하고, 수식을 토큰화한 뒤 재귀 하강 방식으로 계산했다. eval 및 동적 코드 실행 함수를 사용하지 않았다.
+- 사칙연산, 괄호, 거듭제곱, 제곱근, 삼각함수와 역삼각함수, 로그, 팩토리얼, 백분율, pi/e, Ans, DEG/RAD 전환, 계산 기록을 구현했다.
+- 계산 사례 36개 및 잘못된 입력 23개를 검사했다. 실제 브라우저에서도 계산, 초기화, 연속 계산, 각도 전환, 기록 재사용, 오류 표시를 확인했다.
+- 계산기 파일을 GitHub에 반영하고 Codespaces에서 동기화했다. 프롬프트 기록은 Codespaces에서 커밋 및 푸시했다.
