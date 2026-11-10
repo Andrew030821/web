@@ -1,0 +1,19 @@
+[MP4] 2. LLM    
+: 2026-11-10
+ : Codex (LLM   )
+ : https://andrew030821.github.io/web/pj_4.html
+
+1.    ()
+2  github pj_4.html       e-class URL      
+
+  : e-Class        .   HTML form , eval  ,  URL          .
+
+2.      ()
+     
+
+3.    
+-     HTML  pj_4.html , ,   .
+- form submit  ,       . eval       .
+- , , , ,  , , , , pi/e, Ans, DEG/RAD ,   .
+-   36    23 .   , ,  ,  ,  ,   .
+-   GitHub  Codespaces .   Codespaces   .
