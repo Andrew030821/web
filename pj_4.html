@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#153b36">
+<title>FORMULA — 나만의 공학용 계산기</title>
+<style>
+:root{color-scheme:light;--ink:#173b36;--muted:#6d7772;--paper:#f4f3ed;--line:#dedfd6;--accent:#d7ef9c;--orange:#f3a56e}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #f3a56e;outline-offset:4px}button{touch-action:manipulation}header{max-width:1120px;margin:auto;padding:30px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font-size:21px;font-weight:800;letter-spacing:3px;display:flex;align-items:center;gap:12px}.brand span{display:grid;place-items:center;width:33px;height:33px;border:1px solid #173b36;border-radius:50%;font-family:Georgia,serif;font-size:25px;letter-spacing:0}.course{font-size:12px;color:var(--muted);letter-spacing:1px}main{max-width:1064px;margin:48px auto 32px;padding:0 28px}.intro{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px;gap:20px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--muted);margin:0 0 12px}h1{font-size:clamp(28px,4vw,40px);font-weight:650;letter-spacing:-1.6px;margin:0}.intro p:last-child{font-size:13px;line-height:1.8;color:var(--muted);margin:0}.workspace{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(240px,1fr);gap:24px;align-items:start}.calculator{border-radius:24px;background:var(--ink);padding:25px;box-shadow:0 14px 35px #173b3612;color:#edf3e8}.calc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:10px}.device-name{font-size:11px;letter-spacing:2px;color:#adc3b8}.modes{display:flex;background:#0e2c28;border:1px solid #436058;border-radius:8px;padding:3px;gap:3px}.modes button{border:0;border-radius:5px;background:transparent;color:#afc6bb;font-size:11px;font-weight:750;padding:6px 12px}.modes button[aria-pressed=true]{background:var(--accent);color:#173b36}.screen{background:#e7eddc;color:#163b35;border-radius:12px;padding:20px;margin-bottom:20px;min-height:152px}.screen-label{display:flex;justify-content:space-between;color:#64715d;font-size:10px;letter-spacing:1px;margin-bottom:12px}.expression{display:block;width:100%;border:0;background:transparent;color:var(--ink);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:20px;outline:none;padding:0;min-height:30px}.expression::placeholder{color:#87937c}.result{display:block;text-align:right;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:clamp(27px,4vw,38px);letter-spacing:-1.5px;overflow-wrap:anywhere;min-height:47px;margin-top:10px;line-height:1.3}.status{font-size:11px;min-height:17px;color:#5d6e53;margin-top:6px}.status.error{color:#a32f24}.keys{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.keys button{min-height:49px;border:1px solid #4a655d;border-radius:9px;background:#294d45;color:#dfebdf;font-size:16px;box-shadow:0 2px 0 #0b2a24;transition:background .12s,transform .12s}.keys button:hover{background:#3d6358}.keys button:active{transform:translateY(2px);box-shadow:none}.keys .number{background:#f0f1e8;color:#153b36;border-color:#f0f1e8;font-size:22px;font-weight:550}.keys .number:hover{background:white}.keys .operator{color:var(--accent);background:#36594e;font-size:22px}.keys .clear{color:#ffc9a4}.keys .equals{background:var(--orange);color:#2e3328;border-color:var(--orange);font-size:27px}.keys .equals:hover{background:#ffb782}.keys .small{font-size:14px}.calc-foot{display:flex;justify-content:space-between;margin-top:18px;font-size:10px;color:#a8c1b5;letter-spacing:.3px}.side{display:grid;gap:18px}.history-card,.guide{border:1px solid var(--line);border-radius:18px;padding:22px;background:#fbfbf6}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px}h2{font-size:15px;margin:0;font-weight:650}.text-button{border:0;background:none;color:var(--muted);padding:4px;font-size:11px}.text-button:hover{color:var(--ink);text-decoration:underline}.history{list-style:none;padding:0;margin:18px 0 0;max-height:324px;overflow:auto}.history li+li{border-top:1px solid var(--line)}.history button{display:block;width:100%;text-align:left;border:0;background:none;padding:13px 0;color:var(--ink);overflow-wrap:anywhere}.history button:hover{color:#648232}.history small{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.history .math{display:block;font:12px ui-monospace,SFMono-Regular,monospace;margin-bottom:6px}.history strong{font:600 20px ui-monospace,SFMono-Regular,monospace}.empty{padding:22px 0 15px;color:var(--muted);font-size:12px;line-height:1.9}.empty .symbol{font:32px Georgia,serif;color:#a1af94;margin-bottom:8px}.guide{background:#e9eddf}.guide p{font-size:12px;line-height:1.85;color:#66725e;margin:12px 0}.examples{display:flex;flex-wrap:wrap;gap:7px}.examples button{font:12px ui-monospace,SFMono-Regular,monospace;border:1px solid #c7d1ba;background:#f7f8ef;color:var(--ink);border-radius:6px;padding:8px 9px}.examples button:hover{background:white}details{border-top:1px solid #cfd7c4;padding-top:13px;margin-top:17px}summary{font-size:12px;cursor:pointer}details p{margin-bottom:0!important}footer{max-width:1008px;margin:28px auto 0;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:20px;font-size:10px;color:var(--muted);letter-spacing:.5px}kbd{font:10px inherit;border:1px solid #cbd0be;border-radius:3px;padding:1px 4px}@media(max-width:760px){header{padding:22px}.course{font-size:10px}main{margin:30px auto;padding:0 18px}.intro{display:block}.intro p:last-child{margin-top:12px}.workspace{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr;align-items:start}.calculator{padding:20px}.history-card,.guide{padding:18px}}@media(max-width:480px){.side{grid-template-columns:1fr}.brand{font-size:17px}.course{display:none}.keys{gap:7px}.keys button{min-height:48px}.calculator{padding:16px;border-radius:20px}.screen{padding:16px}.calc-head{margin-bottom:16px}.device-name{font-size:9px;letter-spacing:1px}.calc-foot{font-size:9px}footer{display:block;line-height:2}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span>ƒ</span> FORMULA</div><div class="course">WEB PROGRAMMING / PROJECT 04</div></header>
+<main>
+<div class="intro"><div><p class="eyebrow">YOUR EVERYDAY SCIENCE COMPANION</p><h1>생각은 자유롭게, 계산은 정확하게.</h1></div><p>작은 수식부터 복잡한 계산까지.<br>나만의 공학용 계산기, 포뮬러.</p></div>
+<div class="workspace">
+<form id="calculator" class="calculator" aria-label="공학용 계산기" autocomplete="off">
+<div class="calc-head"><span class="device-name">FORMULA / SCIENTIFIC</span><div class="modes" role="group" aria-label="각도 단위"><button type="button" data-mode="DEG" aria-pressed="true">DEG</button><button type="button" data-mode="RAD" aria-pressed="false">RAD</button></div></div>
+<div class="screen"><div class="screen-label"><label for="expression">EXPRESSION</label><span id="mode-label">DEG · 도 단위</span></div><input id="expression" class="expression" name="expression" type="text" spellcheck="false" maxlength="300" placeholder="수식을 입력하세요" aria-describedby="status" aria-label="계산할 수식"><output id="result" class="result" for="expression" aria-live="polite">0</output><div id="status" class="status" role="status">수식을 입력하거나 아래 버튼을 눌러 주세요.</div></div>
+<div class="keys">
+<button type="button" data-insert="sin(" class="small">sin</button><button type="button" data-insert="cos(" class="small">cos</button><button type="button" data-insert="tan(" class="small">tan</button><button type="button" data-insert="(" aria-label="여는 괄호">(</button><button type="button" data-insert=")" aria-label="닫는 괄호">)</button>
+<button type="button" data-insert="asin(" class="small" aria-label="아크사인">sin⁻¹</button><button type="button" data-insert="acos(" class="small" aria-label="아크코사인">cos⁻¹</button><button type="button" data-insert="atan(" class="small" aria-label="아크탄젠트">tan⁻¹</button><button type="button" data-insert="ln(" class="small">ln</button><button type="button" data-insert="log(" class="small">log</button>
+<button type="button" data-insert="sqrt(" aria-label="제곱근">√</button><button type="button" data-insert="^2" aria-label="제곱">x²</button><button type="button" data-insert="^" aria-label="거듭제곱">xʸ</button><button type="button" data-insert="!" aria-label="팩토리얼">n!</button><button type="button" data-insert="%" aria-label="백분율">%</button>
+<button type="button" data-action="clear" class="clear">AC</button><button type="button" data-action="delete" class="clear" aria-label="한 글자 지우기">⌫</button><button type="button" data-insert="pi" aria-label="원주율">π</button><button type="button" data-insert="e" aria-label="자연상수">e</button><button type="button" data-insert="/" class="operator" aria-label="나누기">÷</button>
+<button type="button" data-insert="7" class="number">7</button><button type="button" data-insert="8" class="number">8</button><button type="button" data-insert="9" class="number">9</button><button type="button" data-insert="1/(" class="small" aria-label="역수">1/x</button><button type="button" data-insert="*" class="operator" aria-label="곱하기">×</button>
+<button type="button" data-insert="4" class="number">4</button><button type="button" data-insert="5" class="number">5</button><button type="button" data-insert="6" class="number">6</button><button type="button" data-insert="abs(" class="small" aria-label="절댓값">|x|</button><button type="button" data-insert="-" class="operator" aria-label="빼기">−</button>
+<button type="button" data-insert="1" class="number">1</button><button type="button" data-insert="2" class="number">2</button><button type="button" data-insert="3" class="number">3</button><button type="button" data-insert="exp(" class="small" aria-label="자연지수 함수">eˣ</button><button type="button" data-insert="+" class="operator" aria-label="더하기">+</button>
+<button type="button" data-action="sign" aria-label="부호 전환">±</button><button type="button" data-insert="0" class="number">0</button><button type="button" data-insert="." class="number" aria-label="소수점">.</button><button type="button" data-insert="Ans" class="small" aria-label="직전 계산 결과">Ans</button><button type="submit" class="equals" aria-label="계산하기">=</button>
+</div><div class="calc-foot"><span>Enter 계산 · Esc 초기화</span><span>우선순위 · 괄호 연산 지원</span></div>
+</form>
+<aside class="side">
+<section class="history-card" aria-labelledby="history-title"><div class="section-head"><h2 id="history-title">계산 기록 <span id="count">00</span></h2><button type="button" id="clear-history" class="text-button">모두 지우기</button></div><div class="empty" id="empty-history"><div class="symbol">↗</div>계산의 흐름을 한눈에.<br>최근 10개의 기록이 여기에 표시됩니다.<br>기록을 누르면 수식을 다시 불러옵니다.</div><ol class="history" id="history"></ol></section>
+<section class="guide" aria-labelledby="guide-title"><p class="eyebrow">A LITTLE INSPIRATION</p><h2 id="guide-title">이렇게 계산해 보세요</h2><p>예제를 누르면 수식이 입력됩니다.<br>각도 단위를 확인하고 <kbd>Enter</kbd>로 계산하세요.</p><div class="examples"><button type="button" data-example="sin(30)" data-example-mode="DEG">sin(30)</button><button type="button" data-example="sqrt(3^2+4^2)">√(3²+4²)</button><button type="button" data-example="log(1000)">log(1000)</button><button type="button" data-example="5!/(3!*2!)">₅C₃</button></div><details><summary>입력 도움말</summary><p>sin·cos·tan과 역삼각함수, ln·log(밑 10), sqrt, abs, exp를 지원합니다. 함수는 sin(30)처럼 괄호로 입력하세요. π는 pi, 곱셈은 * 또는 ×, 거듭제곱은 ^입니다. 2pi와 2(3+4)도 사용할 수 있습니다.<br><br>DEG는 도, RAD는 라디안입니다. %는 앞의 수를 100으로 나눕니다. n!은 0~170의 정수만 지원합니다. 실수 범위에서 계산하며 결과는 유효숫자 12자리로 표시합니다. Ans는 직전 결과이며 AC는 수식·결과·Ans를 초기화합니다. 기록은 현재 페이지를 열어 둔 동안만 유지됩니다.</p></details></section>
+</aside>
+</div>
+<footer><span>FORMULA — 공학용 계산기</span><span>HTML FORM · JAVASCRIPT · PROJECT 04</span></footer>
+</main>
+<script id="engine">
+/* 토큰화 → 재귀 하강 파싱 → 계산. 문자열을 코드로 실행하지 않는다. */
+globalThis.ScientificCalculator = (() => {
+  const functions = new Set(['sin','cos','tan','asin','acos','atan','ln','log','sqrt','abs','exp']);
+  const finite = value => {
+    if (!Number.isFinite(value)) throw new Error('실수 범위 또는 계산 가능한 크기를 벗어났습니다.');
+    return value;
+  };
+  function calculate(source, mode = 'DEG', ans = 0) {
+    if (!source.trim()) throw new Error('계산할 수식을 입력해 주세요.');
+    if (source.length > 300) throw new Error('수식은 300자 이내로 입력해 주세요.');
+    const text = source.replace(/π/g,'pi').replace(/×/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/√/g,'sqrt');
+    const tokens = [];
+    let offset = 0;
+    while (offset < text.length) {
+      const rest = text.slice(offset);
+      const space = rest.match(/^\s+/);
+      if (space) { offset += space[0].length; continue; }
+      const number = rest.match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?/);
+      const word = rest.match(/^[a-zA-Z]+/);
+      if (number) { tokens.push({kind:'number',value:finite(Number(number[0]))}); offset += number[0].length; }
+      else if (word) { tokens.push({kind:'word',value:word[0].toLowerCase()}); offset += word[0].length; }
+      else if ('+-*/^()!%'.includes(rest[0])) { tokens.push({kind:rest[0]}); offset++; }
+      else throw new Error('지원하지 않는 문자입니다: ' + rest[0]);
+    }
+    tokens.push({kind:'end'});
+    let position = 0;
+    const peek = () => tokens[position];
+    const take = kind => { if (peek().kind === kind) { position++; return true; } return false; };
+    const expect = kind => { if (!take(kind)) throw new Error(kind === ')' ? '닫는 괄호가 필요합니다.' : '함수 뒤에는 여는 괄호가 필요합니다.'); };
+    const toRadians = x => mode === 'DEG' ? (x % 360) * Math.PI / 180 : x;
+    const fromRadians = x => mode === 'DEG' ? x * 180 / Math.PI : x;
+    function call(name, value) {
+      if (name === 'sin') return Math.sin(toRadians(value));
+      if (name === 'cos') return Math.cos(toRadians(value));
+      if (name === 'tan') {
+        const angle = toRadians(value);
+        if (Math.abs(Math.cos(angle)) < 1e-14) throw new Error('이 각도에서 tan은 정의되지 않습니다.');
+        return Math.tan(angle);
+      }
+      if (name === 'asin' || name === 'acos') {
+        if (Math.abs(value) > 1) throw new Error('역사인·역코사인의 입력 범위는 -1~1입니다.');
+        return fromRadians(name === 'asin' ? Math.asin(value) : Math.acos(value));
+      }
+      if (name === 'atan') return fromRadians(Math.atan(value));
+      if (name === 'ln' || name === 'log') {
+        if (value <= 0) throw new Error('로그에는 0보다 큰 수를 입력해 주세요.');
+        return name === 'ln' ? Math.log(value) : Math.log10(value);
+      }
+      if (name === 'sqrt') {
+        if (value < 0) throw new Error('실수의 제곱근에는 음수를 입력할 수 없습니다.');
+        return Math.sqrt(value);
+      }
+      if (name === 'abs') return Math.abs(value);
+      return Math.exp(value);
+    }
+    function primary() {
+      const token = peek();
+      if (take('number')) return token.value;
+      if (take('(')) { const value = sum(); expect(')'); return value; }
+      if (take('word')) {
+        if (token.value === 'pi') return Math.PI;
+        if (token.value === 'e') return Math.E;
+        if (token.value === 'ans') return ans;
+        if (!functions.has(token.value)) throw new Error('알 수 없는 함수 또는 상수입니다: ' + token.value);
+        expect('('); const value = sum(); expect(')'); return finite(call(token.value,value));
+      }
+      throw new Error('숫자·함수 또는 괄호 안의 수식을 확인해 주세요.');
+    }
+    function postfix() {
+      let value = primary();
+      while (peek().kind === '!' || peek().kind === '%') {
+        if (take('%')) value /= 100;
+        else {
+          take('!');
+          if (!Number.isInteger(value) || value < 0 || value > 170) throw new Error('팩토리얼은 0~170의 정수만 가능합니다.');
+          let product = 1; for (let i = 2; i <= value; i++) product *= i;
+          value = product;
+        }
+      }
+      return finite(value);
+    }
+    function power() {
+      const value = postfix();
+      return take('^') ? finite(Math.pow(value,unary())) : value;
+    }
+    function unary() {
+      if (take('+')) return unary();
+      if (take('-')) return -unary();
+      return power();
+    }
+    function product() {
+      let value = unary();
+      while (true) {
+        if (take('*')) value = finite(value * unary());
+        else if (take('/')) {
+          const divisor = unary();
+          if (divisor === 0) throw new Error('0으로 나눌 수 없습니다.');
+          value = finite(value / divisor);
+        } else if (peek().kind === '(' || peek().kind === 'word') value = finite(value * unary());
+        else break;
+      }
+      return value;
+    }
+    function sum() {
+      let value = product();
+      while (true) {
+        if (take('+')) value = finite(value + product());
+        else if (take('-')) value = finite(value - product());
+        else break;
+      }
+      return value;
+    }
+    const result = sum();
+    if (peek().kind !== 'end') throw new Error('괄호 또는 연산자 위치를 확인해 주세요.');
+    return finite(result);
+  }
+  function format(value) { return Object.is(value,-0) ? '0' : Number(value.toPrecision(12)).toString(); }
+  return {calculate,format};
+})();
+</script>
+<script>
+(() => {
+  'use strict';
+  const {calculate,format} = ScientificCalculator;
+  const form = document.getElementById('calculator');
+  const input = document.getElementById('expression');
+  const result = document.getElementById('result');
+  const status = document.getElementById('status');
+  const history = document.getElementById('history');
+  let mode = 'DEG', ans = 0, completed = false, records = [];
+  function message(text, error = false) { status.textContent = text; status.classList.toggle('error',error); input.setAttribute('aria-invalid',String(error)); }
+  function setMode(value) {
+    mode = value;
+    document.querySelectorAll('[data-mode]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.mode === mode)));
+    document.getElementById('mode-label').textContent = mode + (mode === 'DEG' ? ' · 도 단위' : ' · 라디안');
+    message(mode + ' 모드로 계산합니다.');
+  }
+  function insert(text) {
+    if (completed) {
+      input.value = /^[+*/^!%\-]/.test(text) ? 'Ans' : '';
+      completed = false;
+    }
+    input.focus();
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? start;
+    if (input.value.length - (end - start) + text.length > 300) { message('수식은 300자 이내로 입력해 주세요.',true); return; }
+    input.setRangeText(text,start,end,'end');
+    message('Enter 또는 = 버튼으로 계산하세요.');
+  }
+  function clear() {
+    input.value = ''; result.textContent = '0'; ans = 0; completed = false;
+    message('초기화했습니다. 새 수식을 입력해 주세요.'); input.focus();
+  }
+  function renderHistory() {
+    history.replaceChildren();
+    document.getElementById('empty-history').hidden = records.length > 0;
+    document.getElementById('count').textContent = String(records.length).padStart(2,'0');
+    records.forEach(record => {
+      const li = document.createElement('li'), button = document.createElement('button');
+      button.type = 'button'; button.title = '이 수식 다시 불러오기';
+      const unit = document.createElement('small'), expression = document.createElement('span'), answer = document.createElement('strong');
+      unit.textContent = record.mode; expression.className = 'math'; expression.textContent = record.expression;
+      answer.textContent = '= ' + format(record.value); button.append(unit,expression,answer);
+      button.addEventListener('click',() => { setMode(record.mode); input.value = record.expression; ans = record.ans; completed = false; result.textContent = format(record.value); message('기록의 수식을 불러왔습니다.'); input.focus(); });
+      li.append(button); history.append(li);
+    });
+  }
+  form.addEventListener('submit',event => {
+    event.preventDefault();
+    try {
+      const expression = input.value.trim(), previousAns = ans;
+      const value = calculate(expression,mode,ans);
+      result.textContent = format(value);
+      message('계산 완료 · ' + mode + ' · 유효숫자 12자리');
+      records.unshift({expression,mode,value,ans:previousAns}); records = records.slice(0,10);
+      ans = value; completed = true; renderHistory();
+    } catch (error) { result.textContent = 'Error'; message(error.message,true); completed = false; }
+  });
+  form.addEventListener('click',event => {
+    const button = event.target.closest('button');
+    if (!button) return;
+    if (button.dataset.mode) { setMode(button.dataset.mode); return; }
+    if (button.dataset.insert) { insert(button.dataset.insert); return; }
+    if (button.dataset.action === 'clear') clear();
+    if (button.dataset.action === 'delete') {
+      input.focus(); const start = input.selectionStart ?? input.value.length, end = input.selectionEnd ?? start;
+      input.setRangeText('',start === end ? Math.max(0,start - 1) : start,end,'end'); completed = false; message('수식을 수정했습니다.');
+    }
+    if (button.dataset.action === 'sign') {
+      if (input.value.length > 297) { message('부호를 바꾸려면 수식을 줄여 주세요.',true); return; }
+      input.value = completed ? '-Ans' : input.value ? '-(' + input.value + ')' : '-'; completed = false; input.focus(); message('부호를 전환했습니다.');
+    }
+  });
+  input.addEventListener('input',() => { completed = false; message('Enter 또는 = 버튼으로 계산하세요.'); });
+  document.addEventListener('keydown',event => { if (event.key === 'Escape') { event.preventDefault(); clear(); } });
+  document.querySelectorAll('[data-example]').forEach(button => button.addEventListener('click',() => { if (button.dataset.exampleMode) setMode(button.dataset.exampleMode); input.value = button.dataset.example; completed = false; message('예제 수식을 불러왔습니다. = 버튼을 눌러 주세요.'); input.focus(); }));
+  document.getElementById('clear-history').addEventListener('click',() => { records = []; renderHistory(); message('계산 기록을 모두 지웠습니다.'); });
+})();
+</script>
+</body>
+</html>
