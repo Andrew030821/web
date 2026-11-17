@@ -1,0 +1,18 @@
+{
+  "name": "web-express-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "12주차 Express 라우팅 실습",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:file": "node file-server.js",
+    "test": "node --test test/server.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
